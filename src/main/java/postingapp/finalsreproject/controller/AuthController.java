@@ -3,10 +3,7 @@ package postingapp.finalsreproject.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import postingapp.finalsreproject.model.dto.LoginRequest;
 import postingapp.finalsreproject.model.dto.UserDTO;
 import postingapp.finalsreproject.model.entity.User;
@@ -22,9 +19,9 @@ public class AuthController {
     User registerUser(@RequestBody UserDTO userDTO) {
         return userService.registerUser(userDTO);
     }
-
+    // hello world
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         try {
             boolean isAuthenticated = userService.authenticateUser(loginRequest);
             if (isAuthenticated) {
@@ -36,5 +33,9 @@ public class AuthController {
             System.out.println(e.getMessage());
             return new ResponseEntity<>("An error occurred.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping
+    String sayHello(){
+        return "Hello World!";
     }
 }
