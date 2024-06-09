@@ -27,10 +27,9 @@ pipeline {
         }
         stage('deploy k8s') {
             steps {
-                sh 'helm repo update metrics-server'
-                sh 'helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/'
-                sh 'helm install metrics-server metrics-server/metrics-server -f ~/metrics-values.yml'
-                sh 'kubectl apply -f k8s'
+                sh 'kubectl apply -f k8s/kube.yaml'
+                sh 'kubectl apply -f k8s/postgres.yaml'
+                sh 'kubectl apply -f k8s/spring-app.yaml'
             }
         }
     }

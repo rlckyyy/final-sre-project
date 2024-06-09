@@ -30,6 +30,10 @@ spec:
               cpu: "2"
               memory: "1Gi"
           env:
+            - name: 'spring.datasource.url'
+              value: jdbc:postgresql://postgres:5432/postgres
+            - name: 'jakarta.persistence.jdbc.url'
+              value: jdbc:postgresql://postgres:5432/postgres
             - name: 'elastic.url'
               value: 'host.docker.internal:9200'
             - name: 'LOGSTASH_HOST'
