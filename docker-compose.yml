@@ -1,14 +1,14 @@
 services:
-  sre:
-    image: reluckyyy/srefinal:latest
-    ports:
-      - '8000:8000'
-    depends_on:
-      - postgres
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
-      SPRING_DATASOURCE_USERNAME: postgres
-      SPRING_DATASOURCE_PASSWORD: postgres
+#  sre:
+#    image: reluckyyy/srefinal:latest
+#    ports:
+#      - '8000:8000'
+#    depends_on:
+#      - postgres
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/postgres
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: postgres
   grafana:
     container_name: grafana
     image: grafana/grafana
