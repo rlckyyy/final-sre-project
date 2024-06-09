@@ -27,6 +27,7 @@ pipeline {
         }
         stage('deploy k8s') {
             steps {
+                sh 'kubectl delete deployment spring-boot-app'
                 sh 'kubectl apply -f k8s/kube.yaml'
                 sh 'kubectl apply -f k8s/postgres.yaml'
                 sh 'kubectl apply -f k8s/spring-app.yaml'
