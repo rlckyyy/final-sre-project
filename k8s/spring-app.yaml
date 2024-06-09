@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-app
+  labels:
+    app: spring-boot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-app
+  template:
+    metadata:
+      name: spring-boot-app
+      labels:
+        app: spring-boot-app
+    spec:
+      containers:
+        - name: app
+          image: reluckyyy/srefinal
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "0.2"
+              memory: "200Mi"
+            requests:
+              cpu: "0.1"
+              memory: "100Mi"
+          env:
+            - name: 'elastic.url'
+              value: 'host.docker.internal:9200'
+            - name: 'LOGSTASH_HOST'
+              value: 'host.docker.internal'
+            - name: 'server.port'
+              value: '8000'
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-app-service
+spec:
+  selector:
+    app: spring-boot-app
+  ports:
+    - port: 8000
+      targetPort: 8000
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: spring-boot-app
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: spring-boot-app
+  minReplicas: 1
+  maxReplicas: 10
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 10
