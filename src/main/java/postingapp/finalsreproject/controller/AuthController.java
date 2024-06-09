@@ -21,8 +21,10 @@ public class AuthController {
     }
     //fefkffldsmflksmflsdk
     // hello world
+    // What do u mean
     @PostMapping("/login")
     ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        System.out.println("wkfkfkdk");
         try {
             boolean isAuthenticated = userService.authenticateUser(loginRequest);
             if (isAuthenticated) {
