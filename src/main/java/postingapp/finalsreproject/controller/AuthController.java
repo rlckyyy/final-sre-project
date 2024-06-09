@@ -17,11 +17,9 @@ public class AuthController {
 
     @PostMapping("/register")
     User registerUser(@RequestBody UserDTO userDTO) {
-        System.out.println("HIII");
-        System.out.println("WHAT");
         return userService.registerUser(userDTO);
     }
-    //fefkffl
+    //fefkffldsmflksmflsdk
     // hello world
     @PostMapping("/login")
     ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
