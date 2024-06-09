@@ -18,6 +18,9 @@ public class AuthController {
     @PostMapping("/register")
     User registerUser(@RequestBody UserDTO userDTO) {
         System.out.println("HIII");
+        System.out.println("WHAT");
+        System.out.println("HIII");
+        System.out.println("HIII");
         return userService.registerUser(userDTO);
     }
     //fefkffl
