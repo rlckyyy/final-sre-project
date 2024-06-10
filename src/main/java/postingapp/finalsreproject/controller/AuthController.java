@@ -19,9 +19,6 @@ public class AuthController {
     User registerUser(@RequestBody UserDTO userDTO) {
         return userService.registerUser(userDTO);
     }
-    //fefkffldsmflksmflsdk
-    // hello world
-    // What do u mean
     @PostMapping("/login")
     ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
         System.out.println("wkfkfkdk");
@@ -36,10 +33,5 @@ public class AuthController {
             System.out.println(e.getMessage());
             return new ResponseEntity<>("An error occurred.", HttpStatus.INTERNAL_SERVER_ERROR);
         }
-    }
-    @GetMapping
-    String sayHello(){
-        //Do u wanna see some news
-        return "Hello World!";
     }
 }

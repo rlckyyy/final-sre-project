@@ -24,7 +24,7 @@ public class SecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/v1/auth/**","/actuator/**").permitAll()
+                .requestMatchers("/api/v1/auth/**", "/api/v1/main/**","/actuator/**").permitAll()
                 .anyRequest().authenticated())
                 .formLogin(Customizer.withDefaults())
                 .userDetailsService(customUserDetailsService);
