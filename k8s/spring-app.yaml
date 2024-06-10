@@ -24,11 +24,11 @@ spec:
               protocol: TCP
           resources:
             limits:
-              cpu: "2"
-              memory: "1Gi"
+              cpu: "0.5"
+              memory: "300Mi"
             requests:
-              cpu: "2"
-              memory: "1Gi"
+              cpu: "0.5"
+              memory: "300Mi"
           env:
             - name: 'spring.datasource.url'
               value: jdbc:postgresql://postgres:5432/postgres
@@ -73,3 +73,18 @@ spec:
         target:
           type: Utilization
           averageUtilization: 10
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: load-generator
+spec:
+  containers:
+    - name: busybox
+      image: busybox:1.28
+      command: ["/bin/sh", "-c"]
+      args:
+        - >
+          while true; do
+            wget -q -O- spring-boot-app-service:8000/api/v1/main/bye;
+          done
